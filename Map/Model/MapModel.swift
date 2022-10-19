@@ -19,27 +19,41 @@ class MapModel {
     let annotation = MKPointAnnotation()
     var isHiddenPath = false
      
-    let point1 = CLLocationCoordinate2D(latitude: 53.893009, longitude: 27.567444)
-    let point2 = CLLocationCoordinate2D(latitude: 52.097622, longitude: 23.734051)
+    let point1 = CLLocationCoordinate2D(latitude: 53.893009, longitude: 27.567444) // Минск
+    let point2 = CLLocationCoordinate2D(latitude: 52.097622, longitude: 23.734051) // Брест
     //        let point3 = CLLocationCoordinate2D(latitude: 54.687157, longitude: 25.279652)
     
     func addPolyline(mapView: MKMapView) {
         flightpathPolylineLast = createPolyline(mapView: mapView, point1: point1, point2: point2)
         planeAnnotation = annotation
-        
         updatePlanePositionLast(mapView: mapView)
+        mapView.addAnnotation(annotation)
+        mapView.addOverlay(flightpathPolylineLast)
+    }
+    func tapToPlane(mapView: MKMapView) {
+        isHiddenPath.toggle()
+        if isHiddenPath {
+            flightpathPolylineLast = createPolyline(mapView: mapView, point1: point1, point2: point2)
+            updatePlanePositionLast(mapView: mapView)
+            mapView.addOverlay(flightpathPolylineLast)
+        } else {
+            mapView.removeOverlays(mapView.overlays)
+        }
     }
     
     func updatePlanePositionLast(mapView: MKMapView) {
         let step = 1
         if planeAnnotationPosition + step < flightpathPolylineLast.pointCount {
+//            mapView.removeAnnotation(annotation)
             let points = flightpathPolylineLast.points()
             self.planeAnnotationPosition += step
             let nextMapPoint = points[planeAnnotationPosition]
             planeAnnotation.coordinate = nextMapPoint.coordinate
             flightpathPolylineNext = createPolyline(mapView: mapView, point1: point1, point2: planeAnnotation.coordinate)
+            mapView.addOverlay(flightpathPolylineNext)
             timer = Timer.scheduledTimer(withTimeInterval: 0.03, repeats: false) { _ in
                 self.updatePlanePositionLast(mapView: mapView)
+//                mapView.addAnnotation(self.annotation)
             } //  perform(#selector(updatePlanePositionLast), with: nil, afterDelay: 0.03)
         } else {
             timer?.invalidate()
@@ -49,7 +63,6 @@ class MapModel {
     func createPolyline(mapView: MKMapView, point1: CLLocationCoordinate2D, point2: CLLocationCoordinate2D) -> MKGeodesicPolyline {
         let locations = [point1, point2]
         let geodesicPolyline = MKGeodesicPolyline(coordinates: locations, count: locations.count)
-        mapView.addOverlay(geodesicPolyline)
         return geodesicPolyline
     }
     

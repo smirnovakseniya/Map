@@ -8,7 +8,7 @@
 import UIKit
 import MapKit
 
-class MapVC: UIViewController, UIViewControllerTransitioningDelegate, FirstViewControllerDelegate {
+class MapVC: UIViewController, UIViewControllerTransitioningDelegate, InfoVCDelegate {
     func update(text: Bool) {
         model.isHiddenPath = text
     }
@@ -18,13 +18,14 @@ class MapVC: UIViewController, UIViewControllerTransitioningDelegate, FirstViewC
     
     @IBOutlet weak var mapView: MKMapView!
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         mapView.delegate = self
         
         model.addPolyline(mapView: mapView)
-        mapView.addAnnotation(model.annotation)
+        
         
         infoVC.delegate = self
     }
@@ -41,7 +42,7 @@ extension MapVC: MKMapViewDelegate {
     }
     
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
-        model.isHiddenPath.toggle()
+        model.tapToPlane(mapView: mapView)
         
         if #available(iOS 15.0, *) {
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
@@ -50,12 +51,13 @@ extension MapVC: MKMapViewDelegate {
                 presentationController.detents = [.medium(), .large()]
             }
             self.present(viewController, animated: true, completion: nil)
-        } else {
+        }
+//            else {
 //            let yourVC = ViewController()
 //            yourVC.modalPresentationStyle = .custom
 //            yourVC.transitioningDelegate = self
 //            self.present(yourVC, animated: true)
-        }
+//        }
         /// аннотация, на которую было нажата, держалась выбранной. код ниже отменяет выбор аннотации, и после этого можно нажать во второй раз.
         DispatchQueue.main.async {
             for item in self.mapView.selectedAnnotations {

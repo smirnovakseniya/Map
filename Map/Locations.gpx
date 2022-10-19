@@ -7,9 +7,4 @@
     <wpt lat="52.097622" lon="23.734051">
         <name>Point 2</name>
         <time>2014-09-24T14:56:00Z</time>
-    </wpt>
-    <wpt lat="54.687157" lon="25.279652">
-        <name>Point 3</name>
-        <time>2014-09-24T14:55:37Z</time>
-    </wpt>
 </gpx>

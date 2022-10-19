@@ -7,13 +7,13 @@
 
 import UIKit
 
-protocol FirstViewControllerDelegate: AnyObject {
+protocol InfoVCDelegate: AnyObject {
     func update(text: Bool)
 }
 
 class InfoVC: UIViewController {
     
-    weak var delegate: FirstViewControllerDelegate?
+    weak var delegate: InfoVCDelegate?
 
     override func viewDidLoad() {
         super.viewDidLoad()
