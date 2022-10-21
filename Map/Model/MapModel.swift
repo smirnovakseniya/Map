@@ -8,32 +8,21 @@
 import UIKit
 import MapKit
 
-struct Path {
-    let pointStart: CLLocationCoordinate2D
-    let pointFinish: CLLocationCoordinate2D
-    let info: InfoPath
-}
-struct InfoPath {
-    let date: String
-    let name: String
-    let info: String
-}
-
 class MapModel {
-
+    
     //MARK: - Variables
     
     weak var timer: Timer?
-
+    
     var flightpathPolylineLast: MKGeodesicPolyline!
     var flightpathPolylineNext: MKGeodesicPolyline!
     var planeAnnotation: MKPointAnnotation!
     var planeAnnotationPosition = 0
     let annotation = MKPointAnnotation()
     var planeDirection: CLLocationDirection?
-
+    
     var isHiddenPath = false
-
+    
     let path = Path(pointStart: CLLocationCoordinate2D(latitude: 53.893009, longitude: 27.567444),
                     pointFinish: CLLocationCoordinate2D(latitude: 36.806389, longitude: 10.181667),
                     info: InfoPath(date: "01.10.2022", name: "Минск - Тунис", info: "Какая-то еще информация..."))
@@ -47,7 +36,7 @@ class MapModel {
         mapView.addAnnotation(annotation)
         mapView.addOverlay(flightpathPolylineLast)
     }
-
+    
     func tapToPlane(mapView: MKMapView) -> InfoPath {
         isHiddenPath = true
         flightpathPolylineLast = createPolyline(mapView: mapView, point1: path.pointStart, point2: path.pointFinish)
@@ -55,29 +44,29 @@ class MapModel {
         mapView.addOverlay(flightpathPolylineLast)
         return path.info
     }
-
+    
     func closedSheet(mapView: MKMapView) {
         isHiddenPath = false
         mapView.removeOverlays(mapView.overlays)
     }
-
+    
     func isHiddenPathStatus(mapView: MKMapView, overlay: MKOverlay) -> MKOverlayRenderer {
         guard let polyline = overlay as? MKPolyline else { return  MKOverlayRenderer() }
         let renderer = MKPolylineRenderer(polyline: polyline)
         if isHiddenPath {
             if polyline == flightpathPolylineLast {
-                        renderer.lineWidth = 3.0
-                        renderer.strokeColor = .red
-                    } else {
-                        renderer.lineWidth = 3.0
-                        renderer.strokeColor = .blue
-                    }
+                renderer.lineWidth = 3.0
+                renderer.strokeColor = .red
+            } else {
+                renderer.lineWidth = 3.0
+                renderer.strokeColor = .blue
+            }
         } else {
             mapView.removeOverlays(mapView.overlays)
         }
         return renderer
     }
-
+    
     private func updatePlanePositionLast(mapView: MKMapView) {
         let step = 1
         if planeAnnotationPosition + step < flightpathPolylineLast.pointCount {
@@ -88,7 +77,7 @@ class MapModel {
             planeAnnotationPosition += step
             
             let nextMapPoint = points[planeAnnotationPosition]
-
+            
             planeAnnotation.coordinate = nextMapPoint.coordinate
             
             flightpathPolylineNext = createPolyline(mapView: mapView, point1: path.pointStart, point2: planeAnnotation.coordinate)
@@ -105,15 +94,15 @@ class MapModel {
             timer?.invalidate()
         }
     }
-
+    
     private func createPolyline(mapView: MKMapView, point1: CLLocationCoordinate2D, point2: CLLocationCoordinate2D) -> MKGeodesicPolyline {
         let locations = [point1, point2]
         let geodesicPolyline = MKGeodesicPolyline(coordinates: locations, count: locations.count)
         return geodesicPolyline
     }
-
+    
     //MARK: - Degrees
-
+    
     func degreesToRadians(_ degrees: Double) -> Double {
         return degrees * .pi / 180.0
     }

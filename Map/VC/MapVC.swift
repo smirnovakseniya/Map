@@ -42,10 +42,9 @@ extension MapVC: MKMapViewDelegate {
         annotationView.transform = CGAffineTransformRotate(mapView.transform, model.degreesToRadians(model.planeDirection!))
         return annotationView
     }
-   
+    
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
         show(InfoVC.initialization(model.tapToPlane(mapView: mapView), delegate: self), sender: nil)
-//        present(InfoVC.initialization(model.tapToPlane(mapView: mapView), delegate: self), animated: true, completion: nil)
         DispatchQueue.main.async {
             for item in self.mapView.selectedAnnotations {
                 self.mapView.deselectAnnotation(item, animated: false)

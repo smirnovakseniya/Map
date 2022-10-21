@@ -15,6 +15,7 @@
 		F2C6C47028FD4AE1009F9977 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F2C6C46E28FD4AE1009F9977 /* LaunchScreen.storyboard */; };
 		F2C6C47A28FEBC2B009F9977 /* InfoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2C6C47928FEBC2B009F9977 /* InfoVC.swift */; };
 		F2C6C47F28FFE08E009F9977 /* MapModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2C6C47E28FFE08E009F9977 /* MapModel.swift */; };
+		F2C6C4832902755E009F9977 /* Path.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2C6C4822902755E009F9977 /* Path.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +29,7 @@
 		F2C6C47128FD4AE1009F9977 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F2C6C47928FEBC2B009F9977 /* InfoVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoVC.swift; sourceTree = "<group>"; };
 		F2C6C47E28FFE08E009F9977 /* MapModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapModel.swift; sourceTree = "<group>"; };
+		F2C6C4822902755E009F9977 /* Path.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Path.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -65,8 +67,8 @@
 				F2C6C48128FFE09C009F9977 /* Model */,
 				F2C6C48028FFE092009F9977 /* VC */,
 				F2C6C46928FD4ADF009F9977 /* Main.storyboard */,
-				F2C6C46C28FD4AE1009F9977 /* Assets.xcassets */,
 				F2C6C46E28FD4AE1009F9977 /* LaunchScreen.storyboard */,
+				F2C6C46C28FD4AE1009F9977 /* Assets.xcassets */,
 				F2C6C47128FD4AE1009F9977 /* Info.plist */,
 			);
 			path = Map;
@@ -85,6 +87,7 @@
 			isa = PBXGroup;
 			children = (
 				F2C6C47E28FFE08E009F9977 /* MapModel.swift */,
+				F2C6C4822902755E009F9977 /* Path.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -168,6 +171,7 @@
 				F2C6C47F28FFE08E009F9977 /* MapModel.swift in Sources */,
 				F2C6C46828FD4ADF009F9977 /* MapVC.swift in Sources */,
 				F2C6C46428FD4ADF009F9977 /* AppDelegate.swift in Sources */,
+				F2C6C4832902755E009F9977 /* Path.swift in Sources */,
 				F2C6C46628FD4ADF009F9977 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
