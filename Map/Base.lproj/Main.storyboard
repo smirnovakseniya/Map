@@ -13,7 +13,7 @@
         <!--MapVC-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="MapVC" customModule="Map" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="mapVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="BYZ-38-t0r" customClass="MapVC" customModule="Map" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -48,14 +48,20 @@
                         <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Какая-то информация" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GOg-2G-SF5">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Дата" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GOg-2G-SF5">
                                 <rect key="frame" x="20" y="97" width="350" height="20.333333333333329"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Много информации" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RFc-0E-eyH">
-                                <rect key="frame" x="20" y="739.66666666666663" width="350" height="20.333333333333371"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Имя" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kFM-eK-SCu">
+                                <rect key="frame" x="20" y="137.33333333333334" width="350" height="20.333333333333343"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Инфо" textAlignment="justified" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pQv-Pd-pBI">
+                                <rect key="frame" x="20" y="177.66666666666666" width="350" height="20.333333333333343"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -65,13 +71,21 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="GOg-2G-SF5" firstAttribute="leading" secondItem="2Hb-Ij-LcG" secondAttribute="leading" constant="20" id="42v-wQ-1Nj"/>
-                            <constraint firstItem="RFc-0E-eyH" firstAttribute="top" secondItem="GOg-2G-SF5" secondAttribute="bottom" constant="622.33000000000004" id="EqD-ar-1SB"/>
+                            <constraint firstItem="pQv-Pd-pBI" firstAttribute="leading" secondItem="2Hb-Ij-LcG" secondAttribute="leading" constant="20" id="5M1-v1-lbt"/>
+                            <constraint firstItem="pQv-Pd-pBI" firstAttribute="top" secondItem="kFM-eK-SCu" secondAttribute="bottom" constant="20" id="HS9-Wa-O3o"/>
+                            <constraint firstItem="kFM-eK-SCu" firstAttribute="top" secondItem="GOg-2G-SF5" secondAttribute="bottom" constant="20" id="HcK-pk-kB6"/>
+                            <constraint firstItem="2Hb-Ij-LcG" firstAttribute="trailing" secondItem="pQv-Pd-pBI" secondAttribute="trailing" constant="20" id="OFL-M5-251"/>
                             <constraint firstItem="2Hb-Ij-LcG" firstAttribute="trailing" secondItem="GOg-2G-SF5" secondAttribute="trailing" constant="20" id="R5m-uo-02B"/>
-                            <constraint firstItem="RFc-0E-eyH" firstAttribute="leading" secondItem="2Hb-Ij-LcG" secondAttribute="leading" constant="20" id="RbT-55-o4l"/>
                             <constraint firstItem="GOg-2G-SF5" firstAttribute="top" secondItem="2Hb-Ij-LcG" secondAttribute="top" constant="50" id="UFK-D7-L57"/>
-                            <constraint firstItem="2Hb-Ij-LcG" firstAttribute="trailing" secondItem="RFc-0E-eyH" secondAttribute="trailing" constant="20" id="uyE-Og-86N"/>
+                            <constraint firstItem="kFM-eK-SCu" firstAttribute="leading" secondItem="2Hb-Ij-LcG" secondAttribute="leading" constant="20" id="ZT5-bs-Tj2"/>
+                            <constraint firstItem="2Hb-Ij-LcG" firstAttribute="trailing" secondItem="kFM-eK-SCu" secondAttribute="trailing" constant="20" id="d6K-n7-bNP"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="dateLabel" destination="GOg-2G-SF5" id="eq9-SL-oKu"/>
+                        <outlet property="infoLabel" destination="pQv-Pd-pBI" id="Bl4-nT-ZG6"/>
+                        <outlet property="nameLabel" destination="kFM-eK-SCu" id="hYg-4Y-xtF"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pQQ-5B-WjS" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
